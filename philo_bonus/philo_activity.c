@@ -1,14 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_activity.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mslyther <mslyther@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 18:17:35 by mslyther          #+#    #+#             */
+/*   Updated: 2022/01/26 18:18:30 by mslyther         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void ft_message(t_info *info, char *str)
-{
-	sem_wait(info->message);
-	if (info->are_alive != 0)
-		printf("%d %d %s\n", ft_get_time() - info->start_time, info->number + 1, str);
-	sem_post(info->message);
-}
-
-void ft_take_fork(t_info *philo)
+void	ft_take_fork(t_info *philo)
 {
 	sem_wait(philo->forks);
 	ft_message(philo, "has taken a fork");
@@ -16,11 +20,11 @@ void ft_take_fork(t_info *philo)
 	ft_message(philo, "has taken a fork");
 }
 
-void ft_eating(t_info *philo)
+void	ft_eating(t_info *philo)
 {
 	sem_wait(philo->eating);
 	philo->last_dinner = ft_get_time();
-	sem_post(philo->eating);;
+	sem_post(philo->eating);
 	ft_message(philo, "is eating");
 	ft_usleep(philo->time_to_eat);
 	if (philo->eating_limit != -1)
@@ -29,18 +33,18 @@ void ft_eating(t_info *philo)
 	sem_post(philo->forks);
 }
 
-void ft_sleeping(t_info *philo)
+void	ft_sleeping(t_info *philo)
 {
 	ft_message(philo, "is sleeping");
 	ft_usleep(philo->time_to_sleep);
 }
 
-void ft_thinking(t_info *philo)
+void	ft_thinking(t_info *philo)
 {
 	ft_message(philo, "is thinking");
 }
 
-int ft_philo_activity(t_info *info)
+int	ft_philo_activity(t_info *info)
 {
 	pthread_t	monitor;
 

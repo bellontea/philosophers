@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mslyther <mslyther@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 18:15:07 by mslyther          #+#    #+#             */
+/*   Updated: 2022/01/26 18:15:50 by mslyther         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void ft_clear_all(t_info *info)
+void	ft_clear_all(t_info *info)
 {
 	int	i;
 
@@ -34,7 +46,7 @@ int	ft_init_sem(t_info *info)
 	return (0);
 }
 
-int ft_init(t_info *info, int argc, char **argv)
+int	ft_init(t_info *info, int argc, char **argv)
 {
 	info->forks = NULL;
 	info->num_philos = ft_atoi(argv[1]);
@@ -57,4 +69,4 @@ int ft_init(t_info *info, int argc, char **argv)
 		return (1);
 	memset(info->philos_pids, 0, sizeof(pid_t) * info->num_philos);
 	return (0);
-}	
+}

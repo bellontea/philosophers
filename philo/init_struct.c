@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mslyther <mslyther@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 17:50:20 by mslyther          #+#    #+#             */
+/*   Updated: 2022/01/26 17:53:38 by mslyther         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void ft_clear_all(t_info *info)
+void	ft_clear_all(t_info *info)
 {
-	int i;
+	int	i;
 
 	pthread_mutex_destroy(&info->message);
 	i = 0;
@@ -23,9 +35,9 @@ void ft_clear_all(t_info *info)
 		free(info->philos);
 }
 
-void ft_init_philos(t_info *info)
+void	ft_init_philos(t_info *info)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < info->num_philos)
@@ -41,9 +53,9 @@ void ft_init_philos(t_info *info)
 	}
 }
 
-void ft_mutex_init(t_info *info)
+void	ft_mutex_init(t_info *info)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < info->num_philos)
@@ -53,7 +65,7 @@ void ft_mutex_init(t_info *info)
 	}
 }
 
-int ft_init(t_info *info, int argc, char **argv)
+int	ft_init(t_info *info, int argc, char **argv)
 {
 	info->forks = NULL;
 	info->philos = NULL;
@@ -74,10 +86,10 @@ int ft_init(t_info *info, int argc, char **argv)
 		info->eating_limit = -1;
 	info->are_alive = 1;
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
-	info->philos = malloc(sizeof(t_philo) * info->num_philos);	
+	info->philos = malloc(sizeof(t_philo) * info->num_philos);
 	if (!info->forks || !info->philos)
 		return (1);
 	ft_mutex_init(info);
 	ft_init_philos(info);
 	return (0);
-}	
+}

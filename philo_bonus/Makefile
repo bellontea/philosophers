@@ -3,10 +3,9 @@ NAME = philo_bonus
 OBJ_DIR = ./objects
 HEADER = philo.h
 
-CFLAGS = -pthread -I./ #-Wall -Wextra -Werror 
+CFLAGS = -pthread -I./ -Wall -Wextra -Werror 
 
 SRC = $(shell ls ./*.c)
-# SRC_UTILS = $(shell ls ./utils/*.c)
 
 OBJS := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 CC = gcc
